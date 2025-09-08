@@ -11,7 +11,7 @@ class GameController extends Controller
      */
     public function index()
     {
-        //
+        return view('games.index');
     }
 
     /**
@@ -33,9 +33,9 @@ class GameController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($game)
     {
-        //
+        return view('games.show', compact('game'));
     }
 
     /**
