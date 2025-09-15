@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('genre');
+            $table->integer('size_mb');
             $table->text('description')->nullable();
             $table->timestamps();
         });

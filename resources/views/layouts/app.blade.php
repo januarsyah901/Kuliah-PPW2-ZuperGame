@@ -14,7 +14,7 @@
         <a href="{{ route('home') }}" class="font-bold text-lg"> Zuper Game</a>
         <div class="space-x-4">
             <a href="{{ route('home') }}" class="hover:underline">Home</a>
-            <a href="{{ route('games.index') }}" class="hover:underline">Games</a>
+            <a href="{{ route('stat') }}" class="hover:underline">Statistic</a>
         </div>
     </div>
 </nav>
