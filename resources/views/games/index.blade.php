@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('title', 'Daftar Game')
 
 @section('content')
@@ -16,6 +15,24 @@
                     Search
                 </button>
             </form>
+        </div>
+        <!-- Dropdown Genres -->
+        <div class="relative">
+            <button id="genreDropdownBtn" type="button" class="hover:underline focus:outline-none">
+                Genres
+                <svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M19 9l-7 7-7-7" />
+                </svg>
+            </button>
+            <div id="genreDropdownMenu" class="absolute hidden bg-white text-black mt-2 rounded shadow-lg">
+                @foreach($genres as $genre)
+                    <a href="{{ route('genre.show', $genre) }}"
+                       class="block px-4 py-2 hover:bg-yellow-100">
+                        {{ $genre }}
+                    </a>
+                @endforeach
+            </div>
         </div>
         @if(isset($latestGames) && $latestGames->count() > 0)
         <h2>Recent added</h2>
@@ -38,4 +55,18 @@
             @endforeach
         </div>
     </div>
+    <script>
+        // Dropdown genre toggle
+        document.addEventListener('DOMContentLoaded', function () {
+            const btn = document.getElementById('genreDropdownBtn');
+            const menu = document.getElementById('genreDropdownMenu');
+            document.addEventListener('click', function (e) {
+                if (btn.contains(e.target)) {
+                    menu.classList.toggle('hidden');
+                } else if (!menu.contains(e.target)) {
+                    menu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 @endsection

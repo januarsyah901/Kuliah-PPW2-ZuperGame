@@ -12,12 +12,13 @@
 <nav class="bg-yellow-500 text-black p-4">
     <div class="max-w-6xl mx-auto flex justify-between items-center">
         <a href="{{ route('home') }}" class="font-bold text-lg"> Zuper Game</a>
-        <div class="space-x-4">
+        <div class="flex items-center space-x-6">
             <a href="{{ route('home') }}" class="hover:underline">Home</a>
             <a href="{{ route('stat') }}" class="hover:underline">Statistic</a>
         </div>
     </div>
 </nav>
+
 
 <!-- Main Content -->
 <main class="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">

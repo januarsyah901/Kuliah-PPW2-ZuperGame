@@ -14,8 +14,8 @@ class GameController extends Controller
     {
         $games = \App\Models\Game::all();
         $latestGames = \App\Models\Game::latest()->take(5)->get();
-
-        return view('games.index', compact('games', 'latestGames'));
+        $genres = \App\Models\Game::select('genre')->distinct()->pluck('genre');
+        return view('games.index', compact('games', 'latestGames', 'genres'));
     }
 
     public function stat()
