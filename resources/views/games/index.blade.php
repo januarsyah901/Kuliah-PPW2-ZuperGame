@@ -27,14 +27,16 @@
             </button>
             <div id="genreDropdownMenu" class="absolute hidden bg-white text-black mt-2 rounded shadow-lg">
                 @foreach($genres as $genre)
-                    <a href="{{ route('genre.show', $genre) }}"
+                    <a href="{{ route('genre.show', $genre->id) }}"
                        class="block px-4 py-2 hover:bg-yellow-100">
-                        {{ $genre }}
+                        {{ $genre->name }}
                     </a>
                 @endforeach
             </div>
         </div>
         @if(isset($latestGames) && $latestGames->count() > 0)
+
+        <!-- Recent added -->
         <h2>Recent added</h2>
         <div class="space-y-4 mb-8">
                 @foreach($latestGames as $game)
@@ -45,13 +47,36 @@
                 @endforeach
         </div>
         @endif
+        <!-- All Game -->
         <h2>All of games</h2>
         <div class="space-y-4">
             @foreach($games as $game)
-                <a href="{{ route('games.show', $game->id) }}"
-                   class="inline-block p-4 bg-white text-gray-900 shadow hover:bg-gray-200 rounded">
-                    {{ $game->name }}
-                </a>
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <h3 class="text-xl font-bold mb-2">
+                                <a href="{{ route('games.show', $game->id) }}"
+                                   class="text-blue-600 hover:text-blue-800">
+                                    {{ $game->name }}
+                                </a>
+                            </h3>
+                            <p class="text-gray-600 mb-2">
+                                <strong>Genres:</strong>
+                                @foreach($game->genres as $genre)
+                                    <a href="{{ route('genre.show', $genre->id) }}" class="text-blue-500 hover:underline">
+                                        {{ $genre->name }}
+                                    </a>@if(!$loop->last), @endif
+                                @endforeach
+                            </p>
+                            <p class="text-gray-600 mb-2">
+                                <strong>Size:</strong> {{ number_format($game->size_mb) }} MB
+                            </p>
+                            @if($game->description)
+                                <p class="text-gray-700">{{ Str::limit($game->description, 150) }}</p>
+                            @endif
+                        </div>
+                    </div>
+                </div>
             @endforeach
         </div>
     </div>

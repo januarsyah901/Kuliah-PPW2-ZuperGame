@@ -44,11 +44,12 @@
                                     </a>
                                 </h3>
                                 <p class="text-gray-600 mb-2">
-                                    <strong>Genre:</strong>
-                                    <a href="{{ route('genre.show', $game->genre) }}"
-                                       class="text-blue-500 hover:underline">
-                                        {{ $game->genre }}
-                                    </a>
+                                    <strong>Genres:</strong>
+                                    @foreach($game->genres as $genre)
+                                        <a href="{{ route('genre.show', $genre->id) }}" class="text-blue-500 hover:underline">
+                                            {{ $genre->name }}
+                                        </a>@if(!$loop->last), @endif
+                                    @endforeach
                                 </p>
                                 <p class="text-gray-600 mb-2">
                                     <strong>Size:</strong> {{ number_format($game->size_mb) }} MB

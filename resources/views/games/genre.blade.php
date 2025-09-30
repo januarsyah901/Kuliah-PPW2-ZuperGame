@@ -5,7 +5,7 @@
 @section('content')
     <div class="max-w-4xl mx-auto">
         <h1 class="text-3xl font-bold mb-6 text-center">Happy Di Zuper Game</h1>
-        <h2>{{ $genre }} Games</h2>
+        <h2>{{ $genre->name }} Games</h2>
         <div class="space-y-4">
             @foreach($games as $game)
                 <a href="{{ route('games.show', $game->id) }}"

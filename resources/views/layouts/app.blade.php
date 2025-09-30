@@ -15,13 +15,14 @@
         <div class="flex items-center space-x-6">
             <a href="{{ route('home') }}" class="hover:underline">Home</a>
             <a href="{{ route('stat') }}" class="hover:underline">Statistic</a>
+            <a href="{{ route('games.create') }}" class="hover:underline">Add New</a>
         </div>
     </div>
 </nav>
 
 
 <!-- Main Content -->
-<main class="flex-grow max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+<main class="flex-grow py-10 ">
     @yield('content')
 </main>
 

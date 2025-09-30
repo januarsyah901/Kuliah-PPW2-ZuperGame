@@ -13,132 +13,114 @@ class GameSeeder extends Seeder
      */
     public function run(): void
     {
-        $games = [
+        // Membuat 20 data game dummy
+        $gamesData = [
             [
-                'name' => 'The Legend of Zelda: Breath of the Wild',
-                'genre' => 'Action-Adventure',
-                'size_mb' => 13400,
-                'description' => 'An open-world action-adventure game where players explore the kingdom of Hyrule and embark on a quest to defeat Calamity Ganon.',
+                'name' => 'Action Hero',
+                'size_mb' => 15000,
+                'description' => 'Fast-paced action game with stunning graphics.'
             ],
             [
-                'name' => 'Super Mario Odyssey',
-                'genre' => 'Platformer',
-                'size_mb' => 5700,
-                'description' => 'A 3D platformer where Mario embarks on a globe-trotting adventure to rescue Princess Peach from Bowser.',
-            ],
-            [
-                'name' => 'God of War',
-                'genre' => 'Action',
-                'size_mb' => 45000,
-                'description' => 'An action-adventure game following Kratos and his son Atreus on their journey through Norse mythology.',
-            ],
-            [
-                'name' => 'Minecraft',
-                'genre' => 'Sandbox',
-                'size_mb' => 1000,
-                'description' => 'A sandbox game that allows players to build, explore, and survive in a blocky, procedurally generated world.',
-            ],
-            [
-                'name' => 'Fortnite',
-                'genre' => 'Battle Royale',
-                'size_mb' => 26000,
-                'description' => 'A free-to-play battle royale game where 100 players fight to be the last one standing.',
-            ],
-            [
-                'name' => 'Among Us',
-                'genre' => 'Social Deduction',
-                'size_mb' => 250,
-                'description' => 'A multiplayer game where players work together to complete tasks while trying to identify impostors among the crew.',
-            ],
-            [
-                'name' => 'Cyberpunk 2077',
-                'genre' => 'RPG',
-                'size_mb' => 70000,
-                'description' => 'An open-world role-playing game set in a dystopian future where players take on the role of a mercenary outlaw.',
-            ],
-            [
-                'name' => 'Animal Crossing: New Horizons',
-                'genre' => 'Simulation',
-                'size_mb' => 6200,
-                'description' => 'A life simulation game where players develop a deserted island into a thriving community.',
-            ],
-            [
-                'name' => 'Call of Duty: Warzone',
-                'genre' => 'First-Person Shooter',
-                'size_mb' => 100000,
-                'description' => 'A free-to-play battle royale game set in the Call of Duty universe.',
-            ],
-            [
-                'name' => 'Valorant',
-                'genre' => 'Tactical Shooter',
-                'size_mb' => 8000,
-                'description' => 'A team-based tactical shooter where players use unique agent abilities in competitive matches.',
-            ],
-            [
-                'name' => 'Red Dead Redemption 2',
-                'genre' => 'Action-Adventure',
-                'size_mb' => 150000,
-                'description' => 'An epic tale of life in America’s unforgiving heartland, following outlaw Arthur Morgan and the Van der Linde gang.',
-            ],
-            [
-                'name' => 'The Witcher 3: Wild Hunt',
-                'genre' => 'RPG',
-                'size_mb' => 50000,
-                'description' => 'A story-driven open-world RPG set in a fantasy universe, where you play as professional monster hunter Geralt of Rivia.',
-            ],
-            [
-                'name' => 'Apex Legends',
-                'genre' => 'Battle Royale',
+                'name' => 'RPG Legends',
                 'size_mb' => 22000,
-                'description' => 'A free-to-play battle royale game where legendary characters with powerful abilities team up to fight for fame and fortune on the fringes of the Frontier.',
+                'description' => 'Epic RPG adventure with deep story.'
             ],
             [
-                'name' => 'Stardew Valley',
-                'genre' => 'Simulation',
-                'size_mb' => 500,
-                'description' => 'A charming farming simulation game where you inherit your grandfather\'s old farm plot and work to restore it to its former glory.',
+                'name' => 'Strategy Master',
+                'size_mb' => 8000,
+                'description' => 'Test your mind in this strategy game.'
             ],
             [
-                'name' => 'Overwatch 2',
-                'genre' => 'First-Person Shooter',
-                'size_mb' => 30000,
-                'description' => 'A vibrant team-based shooter set in an optimistic future, where heroes from around the world clash on the battlefield.',
-            ],
-            [
-                'name' => 'Elden Ring',
-                'genre' => 'Action RPG',
-                'size_mb' => 60000,
-                'description' => 'A fantasy action RPG where players journey through a vast world to become the next Elden Lord.',
-            ],
-            [
-                'name' => 'League of Legends',
-                'genre' => 'MOBA',
+                'name' => 'Adventure Island',
                 'size_mb' => 12000,
-                'description' => 'A fast-paced, competitive multiplayer online battle arena (MOBA) game where two teams of five powerful champions clash.',
+                'description' => 'Explore mysterious islands and solve puzzles.'
             ],
             [
-                'name' => 'Terraria',
-                'genre' => 'Sandbox',
-                'size_mb' => 300,
-                'description' => 'An action-packed adventure game where players dig, fight, and build their way through a world of enemies and treasures.',
+                'name' => 'Sim Builder',
+                'size_mb' => 18000,
+                'description' => 'Build and manage your own city.'
             ],
             [
-                'name' => 'Hades',
-                'genre' => 'Roguelike',
-                'size_mb' => 1500,
-                'description' => 'A god-like roguelike dungeon crawler where you fight your way out of the Underworld and defy the god of the dead.',
+                'name' => 'Sports Mania',
+                'size_mb' => 9000,
+                'description' => 'Compete in various sports tournaments.'
             ],
             [
-                'name' => 'Celeste',
-                'genre' => 'Platformer',
-                'size_mb' => 1200,
-                'description' => 'A challenging and emotional platformer where you help Madeline survive her inner demons on a journey to the top of Celeste Mountain.',
+                'name' => 'Puzzle Quest',
+                'size_mb' => 4000,
+                'description' => 'Solve challenging puzzles and riddles.'
             ],
-
+            [
+                'name' => 'Horror Night',
+                'size_mb' => 16000,
+                'description' => 'Survive the night in a haunted mansion.'
+            ],
+            [
+                'name' => 'Action Arena',
+                'size_mb' => 14000,
+                'description' => 'Battle against other players in the arena.'
+            ],
+            [
+                'name' => 'RPG Kingdom',
+                'size_mb' => 21000,
+                'description' => 'Rule your own kingdom in this RPG.'
+            ],
+            [
+                'name' => 'Strategy War',
+                'size_mb' => 10000,
+                'description' => 'Lead your army to victory.'
+            ],
+            [
+                'name' => 'Adventure Cave',
+                'size_mb' => 11000,
+                'description' => 'Discover secrets in the deep caves.'
+            ],
+            [
+                'name' => 'Sim Life',
+                'size_mb' => 17000,
+                'description' => 'Live your dream life in this simulation.'
+            ],
+            [
+                'name' => 'Sports Pro',
+                'size_mb' => 9500,
+                'description' => 'Become a sports legend.'
+            ],
+            [
+                'name' => 'Puzzle World',
+                'size_mb' => 4200,
+                'description' => 'A world full of puzzles.'
+            ],
+            [
+                'name' => 'Horror Escape',
+                'size_mb' => 15500,
+                'description' => 'Escape from terrifying creatures.'
+            ],
+            [
+                'name' => 'Action Strike',
+                'size_mb' => 13000,
+                'description' => 'Strike fast and win.'
+            ],
+            [
+                'name' => 'RPG Saga',
+                'size_mb' => 20000,
+                'description' => 'Embark on a saga of heroes.'
+            ],
+            [
+                'name' => 'Strategy Empire',
+                'size_mb' => 9500,
+                'description' => 'Build your empire and conquer.'
+            ],
+            [
+                'name' => 'Adventure Forest',
+                'size_mb' => 11500,
+                'description' => 'Adventure in the mysterious forest.'
+            ],
         ];
-
-        foreach ($games as $game) {
-            Game::create($game);
+        $genreIds = \App\Models\Genre::pluck('id')->toArray();
+        foreach ($gamesData as $data) {
+            $game = \App\Models\Game::create($data);
+            // Attach 1-3 random genres to each game
+            $game->genres()->attach(\Illuminate\Support\Arr::random($genreIds, rand(1, 3)));
         }
     }
 }
