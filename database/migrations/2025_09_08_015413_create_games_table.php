@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
+            $table->unsignedBigInteger('developer_id');
             $table->integer('size_mb');
             $table->text('description')->nullable();
             $table->timestamps();
+            $table->foreign('developer_id')->references('id')->on('developers')->onDelete('cascade');
         });
     }
 

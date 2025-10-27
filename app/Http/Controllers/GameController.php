@@ -12,18 +12,18 @@ class GameController extends Controller
      */
     public function index()
     {
-        $games = \App\Models\Game::with('genres')->get();
-        $latestGames = \App\Models\Game::with('genres')->latest()->take(5)->get();
-        $genres = \App\Models\Genre::all();
-        return view('games.index', compact('games', 'latestGames', 'genres'));
+        $games = \App\Models\Game::with('developer')->latest()->get();
+        $latestGames = \App\Models\Game::with('developer')->latest()->take(5)->get();
+        $developers = \App\Models\Developer::all();
+        return view('games.index', compact('games', 'latestGames', 'developers'));
     }
 
     public function stat()
     {
         $totalGames = \App\Models\Game::count();
         $averageSize = \App\Models\Game::average('size_mb');
-        $genreDistribution = \App\Models\Genre::withCount('games')->get();
-        return view('games.stat', compact('totalGames', 'averageSize', 'genreDistribution'));
+        $developerDistribution = \App\Models\Developer::withCount('games')->get();
+        return view('games.stat', compact('totalGames', 'averageSize', 'developerDistribution'));
     }
 
     /**
@@ -31,8 +31,8 @@ class GameController extends Controller
      */
     public function create()
     {
-        $genres = \App\Models\Genre::all();
-        return view('games.create', compact('genres'));
+        $developers = \App\Models\Developer::all();
+        return view('games.create', compact('developers'));
     }
 
     /**
@@ -42,17 +42,11 @@ class GameController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'genres' => 'required|array|min:1',
-            'genres.*' => 'exists:genres,id',
+            'developer_id' => 'required|exists:developers,id',
             'size_mb' => 'required|numeric|min:0',
             'description' => 'nullable|string',
         ]);
-        $game = \App\Models\Game::create([
-            'name' => $validated['name'],
-            'size_mb' => $validated['size_mb'],
-            'description' => $validated['description'] ?? null,
-        ]);
-        $game->genres()->attach($validated['genres']);
+        $game = \App\Models\Game::create($validated);
         return redirect()->route('home')->with('success', 'Game added successfully!');
     }
 
@@ -67,9 +61,9 @@ public function searchGame(Request $request)
     if ($query === '') {
         $games = collect();
     } else {
-        $games = \App\Models\Game::with('genres')
+        $games = \App\Models\Game::with('developer')
             ->where('name', 'like', '%' . $query . '%')
-            ->orWhereHas('genres', function ($q) use ($query) {
+            ->orWhereHas('developer', function ($q) use ($query) {
                 $q->where('name', 'like', '%' . $query . '%');
             })
             ->get();
@@ -80,19 +74,15 @@ public function searchGame(Request $request)
 }
     public function showGame($game_id)
     {
-        $game = \App\Models\Game::with('genres')->findOrFail($game_id);
-
-//        @dd($game->genres);
-
+        $game = \App\Models\Game::with('developer')->findOrFail($game_id);
         return view('games.show', compact('game'));
     }
 
-    public function showGenre($genre_id)
+    public function showDeveloper($developer_id)
     {
-        $genre = \App\Models\Genre::findOrFail($genre_id);
-        $games = $genre->games()->with('genres')->get();
-
-        return view('games.genre', compact('games', 'genre'));
+        $developer = \App\Models\Developer::findOrFail($developer_id);
+        $games = $developer->games()->with('developer')->get();
+        return view('games.developer', compact('games', 'developer'));
     }
 
     /**
@@ -100,9 +90,9 @@ public function searchGame(Request $request)
      */
     public function edit($id)
     {
-        $game = \App\Models\Game::with('genres')->findOrFail($id);
-        $genres = \App\Models\Genre::all();
-        return view('games.edit', compact('game', 'genres'));
+        $game = \App\Models\Game::with('developer')->findOrFail($id);
+        $developers = \App\Models\Developer::all();
+        return view('games.edit', compact('game', 'developers'));
     }
 
     /**
@@ -112,18 +102,12 @@ public function searchGame(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'developer_id' => 'required|exists:developers,id',
             'size_mb' => 'required|numeric|min:0',
             'description' => 'nullable|string',
-            'genres' => 'required|array',
-            'genres.*' => 'exists:genres,id',
         ]);
         $game = \App\Models\Game::findOrFail($id);
-        $game->update([
-            'name' => $validated['name'],
-            'size_mb' => $validated['size_mb'],
-            'description' => $validated['description'] ?? null,
-        ]);
-        $game->genres()->sync($validated['genres']);
+        $game->update($validated);
         return redirect()->route('games.show', $game->id)->with('success', 'Game updated successfully!');
     }
 
@@ -133,7 +117,6 @@ public function searchGame(Request $request)
     public function destroy($id)
     {
         $game = \App\Models\Game::findOrFail($id);
-        $game->genres()->detach();
         $game->delete();
         return redirect()->route('home')->with('success', 'Game deleted successfully!');
     }

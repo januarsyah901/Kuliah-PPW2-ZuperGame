@@ -9,6 +9,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             GenreSeeder::class,
+            DeveloperSeeder::class,
             GameSeeder::class,
         ]);
     }

@@ -12,7 +12,7 @@
                 <input type="text"
                        name="query"
                        value="{{ $query }}"
-                       placeholder="Search games by name or genre..."
+                       placeholder="Search games by name or developer..."
                        class="flex-1 px-4 py-2 border bg-gray-900 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <button type="submit"
                         class="px-6 py-2 bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -44,12 +44,10 @@
                                     </a>
                                 </h3>
                                 <p class="text-gray-600 mb-2">
-                                    <strong>Genres:</strong>
-                                    @foreach($game->genres as $genre)
-                                        <a href="{{ route('genre.show', $genre->id) }}" class="text-blue-500 hover:underline">
-                                            {{ $genre->name }}
-                                        </a>@if(!$loop->last), @endif
-                                    @endforeach
+                                    <strong>Developer:</strong>
+                                    <a href="{{ route('developer.show', $game->developer->id) }}" class="text-blue-500 hover:underline">
+                                        {{ $game->developer->name }}
+                                    </a>
                                 </p>
                                 <p class="text-gray-600 mb-2">
                                     <strong>Size:</strong> {{ number_format($game->size_mb) }} MB
@@ -74,7 +72,7 @@
         @else
             <div class="text-center py-8">
                 <p class="text-gray-600 text-lg">Enter a search term to find games.</p>
-                <p class="text-gray-500 mt-2">You can search by game name, genre, or description.</p>
+                <p class="text-gray-500 mt-2">You can search by game name or developer.</p>
             </div>
         @endif
     </div>

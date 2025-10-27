@@ -16,12 +16,13 @@ class Game extends Model
     ];
     protected $fillable = [
         'name',
+        'developer_id',
         'size_mb',
         'description',
     ];
 
-    public function genres()
+    public function developer()
     {
-        return $this->belongsToMany(Genre::class, 'game_genre');
+        return $this->belongsTo(Developer::class);
     }
 }

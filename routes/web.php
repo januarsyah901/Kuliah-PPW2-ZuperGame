@@ -14,7 +14,7 @@ Route::post('/games', [\App\Http\Controllers\GameController::class, 'store'])->n
 
 Route::get('/games/{game}', [\App\Http\Controllers\GameController::class, 'showGame'])->name('games.show');
 
-Route::get('/genre/{genre}', [\App\Http\Controllers\GameController::class, 'showGenre'])->name('genre.show');
+Route::get('/developer/{developer}', [\App\Http\Controllers\GameController::class, 'showDeveloper'])->name('developer.show');
 
 Route::get('/games/{game}/edit', [\App\Http\Controllers\GameController::class, 'edit'])->name('games.edit');
 

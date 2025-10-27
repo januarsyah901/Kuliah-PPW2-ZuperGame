@@ -30,3 +30,5 @@ class GenreSeeder extends Seeder
         }
     }
 }
+
+// GenreSeeder and Genre model are no longer needed. You can delete these files if you want.

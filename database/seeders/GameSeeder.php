@@ -116,11 +116,13 @@ class GameSeeder extends Seeder
                 'description' => 'Adventure in the mysterious forest.'
             ],
         ];
-        $genreIds = \App\Models\Genre::pluck('id')->toArray();
-        foreach ($gamesData as $data) {
-            $game = \App\Models\Game::create($data);
-            // Attach 1-3 random genres to each game
-            $game->genres()->attach(\Illuminate\Support\Arr::random($genreIds, rand(1, 3)));
+        $developerIds = \App\Models\Developer::pluck('id')->toArray();
+        if (empty($developerIds)) {
+            throw new \Exception('No developers found. Please seed developers first.');
+        }
+        foreach ($gamesData as $i => $data) {
+            $data['developer_id'] = $developerIds[$i % count($developerIds)];
+            \App\Models\Game::create($data);
         }
     }
 }

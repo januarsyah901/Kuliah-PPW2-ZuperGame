@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container mx-auto">
-        <h1>Games Library</h1>
+        <h1 class="text-xl font-bold mb-6">Games Library</h1>
         <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
             <div class="flex justify-between items-start">
                 <div class="flex-1">
@@ -12,13 +12,11 @@
                         {{ $game->name }}
                     </h3>
                     <p class="text-gray-600 mb-2">
-                        <strong>Genre:</strong>
-                        @foreach($game->genres as $genre)
-                            <a href="{{ route('genre.show', $genre->id) }}"
-                               class="text-blue-500 hover:underline">
-                                {{ $genre->name }}
-                            </a>
-                        @endforeach
+                        <strong>Developer:</strong>
+                        <a href="{{ route('developer.show', $game->developer->id) }}"
+                           class="text-blue-500 hover:underline">
+                            {{ $game->developer->name }}
+                        </a>
                     </p>
                     <p class="text-gray-600 mb-2">
                         <strong>Size:</strong> {{ number_format($game->size_mb) }} MB

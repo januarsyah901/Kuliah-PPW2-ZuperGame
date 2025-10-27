@@ -28,13 +28,14 @@
                         @error('name')<div class="text-red-400 text-xs mt-1">{{ $message }}</div>@enderror
                     </div>
                     <div>
-                        <label for="genres" class="block text-sm font-bold mb-2 text-yellow-400">Genres</label>
-                        <select name="genres[]" id="genres" multiple class="w-full px-4 py-2 rounded-lg bg-gray-900 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 @error('genres') border-red-500 ring-red-500 @enderror" required>
-                            @foreach($genres as $genre)
-                                <option value="{{ $genre->id }}" {{ (collect(old('genres'))->contains($genre->id)) ? 'selected' : '' }}>{{ $genre->name }}</option>
+                        <label for="developer_id" class="block text-sm font-bold mb-2 text-yellow-400">Developer</label>
+                        <select name="developer_id" id="developer_id" class="w-full px-4 py-2 rounded-lg bg-gray-900 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 @error('developer_id') border-red-500 ring-red-500 @enderror" required>
+                            <option value="">Select a developer</option>
+                            @foreach($developers as $developer)
+                                <option value="{{ $developer->id }}" {{ old('developer_id') == $developer->id ? 'selected' : '' }}>{{ $developer->name }}</option>
                             @endforeach
                         </select>
-                        @error('genres')<div class="text-red-400 text-xs mt-1">{{ $message }}</div>@enderror
+                        @error('developer_id')<div class="text-red-400 text-xs mt-1">{{ $message }}</div>@enderror
                     </div>
                     <div>
                         <label for="size_mb" class="block text-sm font-bold mb-2 text-yellow-400">Size (MB)</label>
