@@ -15,7 +15,17 @@
         <div class="flex items-center space-x-6">
             <a href="{{ route('home') }}" class="hover:underline">Home</a>
             <a href="{{ route('stat') }}" class="hover:underline">Statistic</a>
-            <a href="{{ route('games.create') }}" class="hover:underline">Add New</a>
+            @guest
+                <a href="{{ route('login') }}">Login</a>
+                <a href="{{ route('register') }}">Register</a>
+            @else
+                <a href="{{ route('games.create') }}" class="hover:underline">Add New</a>
+                <a href="{{ route('user.dashboard') }}">Dashboard</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:inline">
+                    @csrf
+                    <button type="submit" class="" style="background:transparent;border:none;color:#0366d6;cursor:pointer;margin-left:1rem;padding:0">Logout</button>
+                </form>
+            @endguest
         </div>
     </div>
 </nav>

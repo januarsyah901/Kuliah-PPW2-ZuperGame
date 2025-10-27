@@ -32,7 +32,7 @@ class GameController extends Controller
     public function create()
     {
         $developers = \App\Models\Developer::all();
-        return view('games.create', compact('developers'));
+        return view('user_dashboard.create', compact('developers'));
     }
 
     /**
@@ -92,7 +92,7 @@ public function searchGame(Request $request)
     {
         $game = \App\Models\Game::with('developer')->findOrFail($id);
         $developers = \App\Models\Developer::all();
-        return view('games.edit', compact('game', 'developers'));
+        return view('user_dashboard.edit', compact('game', 'developers'));
     }
 
     /**
@@ -118,6 +118,6 @@ public function searchGame(Request $request)
     {
         $game = \App\Models\Game::findOrFail($id);
         $game->delete();
-        return redirect()->route('home')->with('success', 'Game deleted successfully!');
+        return redirect()->route('user.dashboard')->with('success', 'Game deleted successfully!');
     }
 }
